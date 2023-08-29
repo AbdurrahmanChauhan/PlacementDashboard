@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exploratory Data Analysis and Visualizations</title>
+<!-- Include Google Chart API -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart']});
+</script>
+<!-- Include Matplotlib and other required libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/6.6.2/d3.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h1, h2, h3 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        list-style-type: disc;
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    section {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+    }
+
+    .chart {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .chart-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+</style>
+
+</head>
+<body>
+
+<header>Exploratory Data Analysis and Visualizations</header>
+<p>Introduction: Provide a brief overview of the dataset and the purpose of your analysis.</p>
+
+<div class="container">
+
+<h2>Feature Importance Analysis</h2>
+<p>Below is the list of important features and their importance scores:</p>
+<ul>
+    <li>etest_p: 20.95%</li>
+    <li>hsc_p: 17.67%</li>
+    <li>mba_p: 14.17%</li>
+    <li>ssc_p: 12.46%</li>
+    <li>degree_p: 11.76%</li>
+    <li>sl_no: 8.27%</li>
+    <!-- Include other important features -->
+</ul>
+
+<h2>Visualizations</h2>
+
+<section id="visualization1">
+    <h3>Gender Distribution</h3>
+    <div id="genderChart"></div>
+    <p>Insight: Showcase the distribution of genders among students.</p>
+</section>
+
+<section id="visualization2">
+    <h3>Placement Status</h3>
+    <div id="placementChart"></div>
+    <p>Insight: Visualize the percentage of students placed and not placed.</p>
+</section>
+
+<h2>Histogram for SSC Percentage</h2>
+<div id="sscHistogramChart"></div>
+<p>Insight: Showcase the distribution of SSC percentage among students.</p>
+
+<h2>Box Plot for Salary by Gender</h2>
+<div id="salaryBoxPlotChart"></div>
+<p>Insight: Visualize the salary distribution by gender.</p>
+
+<h2>Pair Plot of Selected Columns</h2>
+<div id="pairPlotChart"></div>
+<p>Insight: Show relationships between selected columns using a pair plot.</p>
+
+</div>
+<!-- Include more visualizations -->
+
+<script type="text/javascript">
+    google.charts.setOnLoadCallback(drawGenderChart);
+
+    function drawGenderChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Gender', 'Count'],
+            ['Male', 120],
+            ['Female', 95]
+        ]);
+
+        var options = {
+            title: 'Gender Distribution'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('genderChart'));
+        chart.draw(data, options);
+    }
+
+    google.charts.setOnLoadCallback(drawPlacementChart);
+
+    function drawPlacementChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Status', 'Count'],
+            ['Placed', 110],
+            ['Not Placed', 105]
+        ]);
+
+        var options = {
+            title: 'Placement Status'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('placementChart'));
+        chart.draw(data, options);
+    }
+
+    <!-- ... Other visualization functions ... -->
+
+    google.charts.setOnLoadCallback(drawSscHistogramChart);
+
+    function drawSscHistogramChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['SSC Percentage', 'Frequency'],
+            [40, 5],
+            [50, 10],
+            // Include other data points
+        ]);
+
+        var options = {
+            title: 'Distribution of SSC Percentage'
+        };
+
+        var chart = new google.visualization.Histogram(document.getElementById('sscHistogramChart'));
+        chart.draw(data, options);
+    }
+
+    google.charts.setOnLoadCallback(drawSalaryBoxPlotChart);
+
+    function drawSalaryBoxPlotChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Gender', 'Salary'],
+            ['Male', 300000],
+            ['Female', 250000],
+            // Include other data points
+        ]);
+
+        var options = {
+            title: 'Salary Distribution by Gender',
+            legend: { position: 'none' },
+        };
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('salaryBoxPlotChart'));
+        chart.draw(data, options);
+    }
+
+        // Sample data (replace with your actual data)
+        var data = [
+        {
+            type: 'scatter',
+            mode: 'markers',
+            x: [67.00, 91.00, 58.00, 58.80, 58.00, 91.00, 67.00, 67.00, 91.00],
+            y: [270000, 200000, 250000, 350000, 270000, 200000, 250000, 350000, 270000],
+            text: ['Point 1', 'Point 2', 'Point 3', 'Point 4', 'Point 5', 'Point 6', 'Point 7', 'Point 8', 'Point 9'],
+            name: 'ssc_p vs. salary'
+        },
+        {
+            type: 'scatter',
+            mode: 'markers',
+            x: [78.33, 78.33, 58.80, 66.28, 66.28, 78.33, 58.80, 78.33, 66.28],
+            y: [200000, 200000, 250000, 350000, 200000, 200000, 250000, 350000, 200000],
+            text: ['Point 1', 'Point 2', 'Point 3', 'Point 4', 'Point 5', 'Point 6', 'Point 7', 'Point 8', 'Point 9'],
+            name: 'hsc_p vs. salary'
+        }
+        // Add more traces for other column pairs
+    ];
+
+    var layout = {
+        title: 'Pair Plot of Selected Columns',
+        showlegend: true,
+        hovermode: 'closest',
+        xaxis: {title: 'X-axis Label'},
+        yaxis: {title: 'Y-axis Label'}
+    };
+
+    // Create the pair plot chart
+    Plotly.newPlot('pairPlotChart', data, layout);
+    
+
+</script>
+
+</body>
+</html>
