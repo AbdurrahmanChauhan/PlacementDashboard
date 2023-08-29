@@ -114,6 +114,27 @@
 <div id="pairPlotChart"></div>
 <p>Insight: Show relationships between selected columns using a pair plot.</p>
 
+<section id="modelEvaluation">
+    <h3>Evaluation Metrics</h3>
+    
+    <!-- Display the calculated metrics -->
+    <div class="metrics">
+        <p>Mean Squared Error: 9456197657.95</p>
+        <p>Root Mean Squared Error: 97194.29</p>
+        <!-- Add more metrics if needed -->
+    </div>
+</section>
+
+<section id="modelEvaluation">
+    <h2>Model Evaluation</h2>
+    <p>Here, we will evaluate the performance of our trained model using various metrics and visualizations.</p>
+    
+    <h3>Model Performance Visualization</h3>
+    <div class="chart">
+        <canvas id="performanceChart"></canvas>
+    </div>
+</section>
+
 </div>
 <!-- Include more visualizations -->
 
@@ -224,6 +245,85 @@
     Plotly.newPlot('pairPlotChart', data, layout);
     
 
+// Sample data (replace with your actual data)
+var actualValues = [350000, 336000, 260000, 350000, 400000, 265000, 250000, 250000, 240000];
+    var predictedValues = [313316, 341952, 327417, 324932, 302892, 326673, 327582, 325433, 328674];
+
+    var ctx = document.getElementById('performanceChart').getContext('2d');
+    var performanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Sample 1', 'Sample 2', 'Sample 3', 'Sample 4', 'Sample 5', 'Sample 6', 'Sample 7', 'Sample 8', 'Sample 9'],
+            datasets: [{
+                label: 'Actual Values',
+                data: actualValues,
+                borderColor: 'blue',
+                fill: false
+            }, {
+                label: 'Predicted Values',
+                data: predictedValues,
+                borderColor: 'red',
+                fill: false
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Actual vs. Predicted Values'
+            },
+            scales: {
+                yAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Salary'
+                    }
+                }],
+                xAxes: [{
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Sample'
+                    }
+                }]
+            }
+        }
+    });
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('performanceChart').getContext('2d');
+    var performanceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Iteration 1', 'Iteration 2', 'Iteration 3', 'Iteration 4'], // Example labels
+            datasets: [{
+                label: 'Model Accuracy',
+                data: [0.85, 0.89, 0.91, 0.92], // Example data
+                borderColor: 'blue',
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Parameter Tuning'
+                    }
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: 'Accuracy'
+                    }
+                }
+            }
+        }
+    });
 </script>
 
 </body>
